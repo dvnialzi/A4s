@@ -33,8 +33,9 @@ jobs:
           protocol: ftp
           port: 21
           server-dir: /htdocs/
-          # Never overwrite the live db.php (it holds the hosting DB password)
-          # and never publish the SQL dump or local-only files.
+          # Never overwrite the live db.php (it holds the hosting DB password),
+          # never publish the SQL dump or local-only files, and leave
+          # customer/admin uploads (refunds, variants, uploads) as they are on the server.
           exclude: |
             **/.git*
             **/.git*/**
@@ -46,3 +47,6 @@ jobs:
             **/*.md
             tools/**
             config.example.php
+            images/refunds/**
+            images/variants/**
+            uploads/**
