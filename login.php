@@ -75,7 +75,26 @@ if (isset($_POST['login'])) {
     $resultAdmin = $stmtAdmin->get_result();
 
     if ($rowAdmin = $resultAdmin->fetch_assoc()) {
-        if (password_verify($pass, $rowAdmin['password']) || $pass === $rowAdmin['password']) {
+        $stored = $rowAdmin['password'];
+        $isHashed = password_get_info($stored)['algoName'] !== 'unknown';
+
+        if ($isHashed) {
+            $valid = password_verify($pass, $stored);
+        } else {
+            // Older accounts saved their password as plain text. Accept it this one time,
+            // then replace it with a hash below so it is never stored as plain text again.
+            $valid = ($stored !== '' && hash_equals($stored, $pass));
+        }
+
+        if ($valid && (!$isHashed || password_needs_rehash($stored, PASSWORD_DEFAULT))) {
+            $newHash = password_hash($pass, PASSWORD_DEFAULT);
+            $upgrade = $conn->prepare("UPDATE admin SET password = ? WHERE adminID = ?");
+            $upgrade->bind_param("si", $newHash, $rowAdmin['adminID']);
+            $upgrade->execute();
+        }
+
+        if ($valid) {
+            session_regenerate_id(true);
             $_SESSION['adminID'] = $rowAdmin['adminID'];
             $_SESSION['username'] = $rowAdmin['username'];
             $_SESSION['role'] = !empty($rowAdmin['role']) ? $rowAdmin['role'] : 'admin'; 
@@ -95,6 +114,7 @@ if (isset($_POST['login'])) {
 
         if ($rowCust = $resultCust->fetch_assoc()) {
             if (password_verify($pass, $rowCust['password'])) {
+                session_regenerate_id(true);
                 $_SESSION['custID'] = $rowCust['custID'];
                 $_SESSION['username'] = $rowCust['username'];
                 $_SESSION['role'] = 'customer'; 

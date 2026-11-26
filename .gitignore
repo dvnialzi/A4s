@@ -1,0 +1,6 @@
+# Real database details. Never commit this file.
+config.php
+
+# System files
+.DS_Store
+Thumbs.db

@@ -1,3 +1,8 @@
+-- A4S Footwear database (cleaned for GitHub)
+-- Products, sizes, colour variants, coupons and settings are included.
+-- Admin accounts, customers, addresses, orders, messages and refunds are left empty on purpose.
+-- After importing, create your first admin with:  php tools/create_admin.php "username" "email" "password"
+
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
@@ -39,10 +44,7 @@ CREATE TABLE `admin` (
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`adminID`, `username`, `password`, `email`, `role`) VALUES
-(1, 'Rhakeem17', 'admin123', 'admin@a4s.com', 'super_admin'),
-(3, 'Yan', '123', 'yan123@gmail.com', 'admin'),
-(4, 'Yan20', '123', 'yan1234@gmail.com', 'admin');
+-- Sample data for `admin` removed: it held passwords and personal details.
 
 -- --------------------------------------------------------
 
@@ -66,13 +68,7 @@ CREATE TABLE `contact_messages` (
 -- Dumping data for table `contact_messages`
 --
 
-INSERT INTO `contact_messages` (`msgID`, `firstname`, `lastname`, `email`, `subject`, `message`, `status`, `name`, `created_at`) VALUES
-(5, '', '', 'rhakeem2016@gmail.com', 'oi', 'oi oi baka', 'Pending', 'Rhakeem17', '2026-06-19 15:35:05'),
-(6, '', '', 'rhakeem2016@gmail.com', 'oi', 'jdisajdoisajjdioas', 'Resolved', 'Rhakeem17', '2026-06-19 15:35:13'),
-(7, '', '', 'rhakeem2016@gmail.com', 'Benda penting', 'penting', 'Resolved', 'Rhakeem17', '2026-06-22 23:29:20'),
-(8, '', '', 'rhakeem2016@gmail.com', 'dsd', 'test', 'Pending', 'Raja Hakeem', '2026-06-23 02:32:00'),
-(9, '', '', 'samad27@gmail.com', 'Benda penting', 'syamsul', 'Pending', 'samad', '2026-06-23 06:21:51'),
-(10, '', '', 'yannn@gmail.com', 'Technical', 'Black box', 'Resolved', 'yann', '2026-06-23 06:52:03');
+-- Sample data for `contact_messages` removed: it held passwords and personal details.
 
 -- --------------------------------------------------------
 
@@ -124,12 +120,7 @@ CREATE TABLE `customer` (
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`custID`, `username`, `password`, `email`, `addresscust`, `reset_token`, `token_expire`, `phone`, `address`, `towncity`, `zipcode`, `firstname`, `lastname`) VALUES
-(1, 'Rhakeem17', '$2y$10$iqb/lAuQNWJdrpClQqZVluXSRMVdr64evo7Seag26pelUE/Ywf8S6', 'rhakeem2016@gmail.com', 'segamat coyyy', NULL, NULL, '+60105977407', 'UNIVERSITI TEKNOLOGI MARA SEGAMAT, JALAN UNIVERSITI OFF, KM 12, JALAN MUAR, KEMAJUAN TANAH JEMENTAH, 85000, JEMENTAH, SEGAMAT JOHOR', '21332', '53100', 'Raja', 'Hakeem'),
-(2, 'jeha', '$2y$10$L4U0bReWI0E0OMupXo8T6e/ubvWMsTCWhEIIImo0skEh22rdOVMEW', 'jeha123@gmail.com', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 'izs', '$2y$10$l/clvN2ccSRwKjEjcEZm.u16.4ylxB/KoNkqkLGxcl90VNT1wrnZC', 'hizsdaniel@gmail.com', 'uitm segamat', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 'yann', '$2y$10$umhrbY/bf/Ziv1hmxdlNkemxQm0llLMCLbDafOXKrSeNjz.jruvqq', 'yannn@gmail.com', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, 'daniel', '$2y$10$OG9GiGXQgH2f5cjV8nmD9eau48Y7I..pBOcrb9m.k2vPte5Id31Xi', 'izsdaniel@gmail.com', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+-- Sample data for `customer` removed: it held passwords and personal details.
 
 -- --------------------------------------------------------
 
@@ -154,11 +145,7 @@ CREATE TABLE `customer_addresses` (
 -- Dumping data for table `customer_addresses`
 --
 
-INSERT INTO `customer_addresses` (`address_id`, `custID`, `address_label`, `firstname`, `lastname`, `phone`, `address`, `towncity`, `zipcode`, `is_default`) VALUES
-(1, 1, 'Default', 'Raja', 'Hakeem', '0105977407', 'UNIVERSITI TEKNOLOGI MARA SEGAMAT, JALAN UNIVERSITI OFF, KM 12, JALAN MUAR, KEMAJUAN TANAH JEMENTAH, 85000, JEMENTAH, SEGAMAT JOHOR', '21332', '53100', 0),
-(2, 1, 'Work', 'Raja', 'Hakeem', '0105977407', 'Malaysia', '21332', '53100', 0),
-(3, 1, 'UiTM', 'Raja', 'Hakeem', '0105977407', 'segamat coyyy', '21332', '53100', 1),
-(4, 3, 'Default', 'Raja', 'Hakeem', '0105977407', 'UNIVERSITI TEKNOLOGI MARA SEGAMAT, JALAN UNIVERSITI OFF, KM 12, JALAN MUAR, KEMAJUAN TANAH JEMENTAH, 85000, JEMENTAH, SEGAMAT JOHOR', '21332', '53100', 1);
+-- Sample data for `customer_addresses` removed: it held passwords and personal details.
 
 -- --------------------------------------------------------
 
@@ -182,39 +169,7 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`orderID`, `custID`, `total_amount`, `coupon_code`, `discount_amount`, `order_date`, `status`, `payment_method`, `shipping_address`) VALUES
-(7, 1, 265.00, NULL, 0.00, '2026-06-02 19:52:49', 'Completed', 'Credit Card', NULL),
-(8, 1, 260.00, NULL, 0.00, '2026-06-07 15:26:20', 'Completed', 'Credit Card', NULL),
-(9, 1, 260.00, NULL, 0.00, '2026-06-07 15:35:42', 'Completed', 'Credit Card', NULL),
-(10, 1, 520.00, NULL, 0.00, '2026-06-07 15:37:01', 'Completed', 'Credit Card', NULL),
-(11, 1, 2000.00, NULL, 0.00, '2026-06-07 15:39:34', 'Completed', 'Credit Card', NULL),
-(12, 1, 45.00, NULL, 0.00, '2026-06-14 17:22:48', 'Shipped', 'Credit Card', NULL),
-(13, 1, 215.00, NULL, 0.00, '2026-06-14 18:58:11', 'Shipped', 'Credit Card', NULL),
-(14, 1, 315.50, NULL, 0.00, '2026-06-14 19:15:59', 'Completed', 'Credit Card', NULL),
-(15, 1, 155.00, NULL, 0.00, '2026-06-14 19:16:35', 'Completed', 'Credit Card', NULL),
-(16, 1, 145.00, NULL, 0.00, '2026-06-14 19:19:36', 'Cancelled', 'Credit Card', NULL),
-(17, 1, 135.00, NULL, 0.00, '2026-06-14 20:51:34', 'Cancelled', 'Credit Card', NULL),
-(18, 1, 520.00, NULL, 0.00, '2026-06-14 22:12:47', 'Completed', 'Credit Card', NULL),
-(19, 1, 195.00, NULL, 0.00, '2026-06-15 08:44:26', 'Completed', 'Credit Card', NULL),
-(20, 1, 180.00, NULL, 0.00, '2026-06-16 08:35:03', 'Completed', 'Credit Card', NULL),
-(21, 1, 180.00, NULL, 0.00, '2026-06-16 08:35:51', 'Completed', 'Credit Card', NULL),
-(22, 1, 195.80, NULL, 0.00, '2026-06-16 08:37:47', 'Completed', 'Credit Card', NULL),
-(23, 1, 195.80, NULL, 0.00, '2026-06-16 08:40:31', 'Completed', 'Credit Card', NULL),
-(24, 1, 195.80, NULL, 0.00, '2026-06-16 09:03:25', 'Completed', 'Credit Card', NULL),
-(25, 1, 296.50, NULL, 0.00, '2026-06-16 09:20:49', 'Completed', 'Credit Card', NULL),
-(26, 1, 195.80, NULL, 0.00, '2026-06-16 09:33:42', 'Completed', 'Credit Card', NULL),
-(27, 1, 280.60, NULL, 0.00, '2026-06-18 13:43:52', 'Completed', 'Credit Card', NULL),
-(28, 3, 195.80, NULL, 0.00, '2026-06-18 14:24:22', 'Completed', 'Credit Card', NULL),
-(29, 1, 105.00, NULL, 0.00, '2026-06-19 23:02:57', 'Completed', 'Credit Card', ', \r\nPhone:'),
-(30, 1, 130.00, NULL, 0.00, '2026-06-19 23:06:16', 'Completed', 'Credit Card', 'dsadsad\r\ndasda\r\ndsadsdas'),
-(31, 1, 145.00, NULL, 0.00, '2026-06-19 23:09:41', 'Completed', 'Credit Card', 'dsadasd'),
-(32, 1, 219.00, NULL, 0.00, '2026-06-22 23:46:18', 'Completed', 'Credit Card', 'Raja Hakeem\r\nsegamat coyyy\r\n21332, 53100\r\nPhone: 0105977407'),
-(33, 1, 488.00, NULL, 0.00, '2026-06-23 06:54:05', 'Cancelled', 'Credit Card', 'Raja Hakeem\r\nUNIVERSITI TEKNOLOGI MARA SEGAMAT, JALAN UNIVERSITI OFF, KM 12, JALAN MUAR, KEMAJUAN TANAH JEMENTAH, 85000, JEMENTAH, SEGAMAT JOHOR\r\n21332, 53100\r\nPhone: 0105977407'),
-(34, 1, 219.00, NULL, 0.00, '2026-06-23 07:08:47', 'Completed', 'Credit Card', 'Raja Hakeem\r\nUNIVERSITI TEKNOLOGI MARA SEGAMAT, JALAN UNIVERSITI OFF, KM 12, JALAN MUAR, KEMAJUAN TANAH JEMENTAH, 85000, JEMENTAH, SEGAMAT JOHOR\r\n21332, 53100\r\nPhone: 0105977407'),
-(35, 4, 129.00, NULL, 0.00, '2026-06-23 14:39:44', 'Completed', 'Cash on Delivery', 'uitm'),
-(36, 1, 129.00, NULL, 0.00, '2026-07-05 20:59:00', 'Pending', 'Credit Card', 'Raja Hakeem\r\nMalaysia\r\n21332, 53100\r\nPhone: 0105977407'),
-(37, 1, 129.00, NULL, 0.00, '2026-07-14 17:40:44', 'Pending', 'Credit Card', 'Raja Hakeem\r\nUNIVERSITI TEKNOLOGI MARA SEGAMAT, JALAN UNIVERSITI OFF, KM 12, JALAN MUAR, KEMAJUAN TANAH JEMENTAH, 85000, JEMENTAH, SEGAMAT JOHOR\r\n21332, 53100\r\nPhone: 0105977407'),
-(38, 5, 129.00, NULL, 0.00, '2026-07-23 15:47:42', 'Pending', 'Cash on Delivery', 'No57 jalan penaga 4 taman pulai hijauan');
+-- Sample data for `orders` removed: it held passwords and personal details.
 
 -- --------------------------------------------------------
 
@@ -236,44 +191,7 @@ CREATE TABLE `order_items` (
 -- Dumping data for table `order_items`
 --
 
-INSERT INTO `order_items` (`itemID`, `orderID`, `prodID`, `product_name`, `quantity`, `price`, `shoe_size`) VALUES
-(4, 6, 1, 'FlexFit Alpha', 1, NULL, 'N/A'),
-(5, 7, 1, 'FlexFit Alpha', 1, NULL, 'N/A'),
-(6, 7, 3, 'Fleet Street Jogger', 1, NULL, 'N/A'),
-(7, 8, 50, 'Summit Xtreme', 1, NULL, 'N/A'),
-(8, 9, 50, 'Summit Xtreme', 1, NULL, 'N/A'),
-(9, 10, 50, 'Summit Xtreme', 2, NULL, 'N/A'),
-(10, 11, 55, 'adidas', 10, NULL, 'N/A'),
-(11, 12, 1, 'FlexFit Alpha', 1, NULL, 'N/A'),
-(12, 13, 28, 'Titanium Lift', 1, NULL, 'N/A'),
-(13, 14, 2, 'Flex Runner Pro', 1, NULL, 'N/A'),
-(14, 14, 6, 'CloudWalk Comfort', 1, NULL, 'N/A'),
-(15, 15, 8, 'GripSole Trail', 1, NULL, 'N/A'),
-(16, 16, 9, 'GripSole Explorer', 1, NULL, 'N/A'),
-(17, 17, 6, 'CloudWalk Comfort', 1, NULL, 'N/A'),
-(18, 18, 50, 'Summit Xtreme', 1, NULL, 'N/A'),
-(19, 18, 50, 'Summit Xtreme', 1, NULL, 'N/A'),
-(20, 19, 45, 'Horizon Peak', 1, NULL, 'N/A'),
-(21, 20, 49, 'Phantom Ghost', 1, NULL, 'N/A'),
-(22, 21, 49, 'Phantom Ghost', 1, NULL, 'N/A'),
-(23, 23, 0, 'Phantom Stealth', 1, NULL, 'N/A'),
-(24, 24, 0, 'Phantom Stealth', 1, NULL, 'N/A'),
-(25, 25, 0, 'Fleet Street Jogger', 1, NULL, 'N/A'),
-(26, 25, 0, 'Zenith Court', 1, NULL, 'N/A'),
-(27, 26, 0, 'Phantom Ghost', 1, NULL, 'N/A'),
-(28, 27, 0, 'Summit Xtreme', 1, NULL, 'N/A'),
-(29, 28, 0, 'Phantom Ghost', 1, NULL, 'N/A'),
-(30, 29, 47, 'Zenith Court', 1, 155.00, 'N/A'),
-(31, 30, 48, 'Phantom Stealth', 1, 180.00, 'N/A'),
-(32, 31, 46, 'Zenith Trainer', 1, 145.00, 'N/A'),
-(33, 32, 63, 'SNIIKA x NARATU', 1, 269.00, 'N/A'),
-(34, 33, 63, 'SNIIKA x NARATU', 1, 269.00, 'UK 5'),
-(35, 33, 63, 'SNIIKA x NARATU', 1, 269.00, 'UK 9'),
-(36, 34, 63, 'SNIIKA x NARATU', 1, 269.00, 'UK 12'),
-(37, 35, 62, 'SNIIKA x KELUANG MAN', 1, 129.00, 'UK 12'),
-(38, 36, 62, 'SNIIKA x KELUANG MAN', 1, 129.00, 'UK 10'),
-(39, 37, 62, 'SNIIKA x KELUANG MAN', 1, 129.00, 'UK 11'),
-(40, 38, 62, 'SNIIKA x KELUANG MAN', 1, 129.00, 'UK 10');
+-- Sample data for `order_items` removed: it held passwords and personal details.
 
 -- --------------------------------------------------------
 
@@ -441,17 +359,7 @@ CREATE TABLE `refund_requests` (
 -- Dumping data for table `refund_requests`
 --
 
-INSERT INTO `refund_requests` (`refund_id`, `custID`, `orderID`, `reason`, `description`, `image_path`, `status`, `request_date`, `evidence_image`) VALUES
-(1, 1, 17, 'Other', 'sdsad', 'uploads/refunds/refund_1781442963_ORD17.png', 'Approved', '2026-06-14 13:16:03', NULL),
-(2, 1, 14, 'Works', '', NULL, 'Rejected', '2026-06-15 00:34:57', 'images/refunds/refund_14_1781483697.png'),
-(3, 1, 19, 'kotor', '', NULL, 'Approved', '2026-06-15 00:47:42', 'images/refunds/refund_19_1781484462.png'),
-(4, 1, 18, 'box', '', NULL, 'Rejected', '2026-06-15 01:02:44', '[\"images\\/refunds\\/refund_18_1781485364_0.png\",\"images\\/refunds\\/refund_18_1781485364_1.png\"]'),
-(5, 1, 26, 'Damaged / Defective', 'Defective busuk', NULL, 'Pending', '2026-06-18 05:07:09', '[\"images\\/refunds\\/refund_26_1781759229_0.webp\",\"images\\/refunds\\/refund_26_1781759229_1.webp\"]'),
-(6, 1, 25, 'Wrong Size', 'bucuk', NULL, 'Rejected', '2026-06-18 05:29:25', '[\"images\\/refunds\\/refund_25_1781760565_0.webp\",\"images\\/refunds\\/refund_25_1781760565_1.webp\"]'),
-(7, 1, 24, 'Wrong Size', 'ucuk macam', NULL, 'Rejected', '2026-06-18 05:39:47', '[\"images\\/refunds\\/refund_24_1781761187_0.png\",\"images\\/refunds\\/refund_24_1781761187_1.png\"]'),
-(8, 3, 28, 'Wrong Size', 'wrong shoes sended', NULL, 'Approved', '2026-06-18 06:25:49', '[\"images\\/refunds\\/refund_28_1781763949_0.webp\"]'),
-(9, 1, 34, 'Damaged / Defective', 'rosak woy', NULL, 'Rejected', '2026-06-22 23:30:10', '[\"images\\/refunds\\/refund_34_1782171010_0.png\",\"images\\/refunds\\/refund_34_1782171010_1.png\",\"images\\/refunds\\/refund_34_1782171010_2.png\",\"images\\/refunds\\/refund_34_1782171010_3.png\",\"images\\/refunds\\/refund_34_1782171010_4.png\"]'),
-(10, 1, 33, 'Item Not As Described', 'dapat adibas', NULL, 'Approved', '2026-06-22 23:33:31', '[\"images\\/refunds\\/refund_33_1782171211_0.jpg\",\"images\\/refunds\\/refund_33_1782171211_1.jpg\"]');
+-- Sample data for `refund_requests` removed: it held passwords and personal details.
 
 -- --------------------------------------------------------
 

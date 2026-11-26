@@ -21,12 +21,16 @@ if (isset($_POST['create_admin'])) {
     $stmt->execute();
     $result = $stmt->get_result();
 
-    if ($result->num_rows > 0) {
+    if (strlen($new_password) < 8) {
+        $error_msg = "Use a password of at least 8 characters.";
+    } elseif ($result->num_rows > 0) {
         $error_msg = "An account with that username or email already exists!";
     } else {
+        // Store a hash, never the password itself
+        $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
         $insert_sql = "INSERT INTO admin (username, password, email, role) VALUES (?, ?, ?, 'admin')";
         $insert_stmt = $conn->prepare($insert_sql);
-        $insert_stmt->bind_param("sss", $new_username, $new_password, $new_email);
+        $insert_stmt->bind_param("sss", $new_username, $hashed_password, $new_email);
 
         if ($insert_stmt->execute()) {
             $success_msg = "Success! The new admin account for <strong>" . htmlspecialchars($new_username) . "</strong> has been created.";
@@ -154,7 +158,7 @@ if (isset($_POST['create_admin'])) {
 
                 <div class="mb-4">
                   <label class="form-label fw-bold">Password</label>
-                  <input type="password" name="password" class="form-control" placeholder="Create a strong password" required>
+                  <input type="password" name="password" class="form-control" placeholder="Create a strong password" required minlength="8">
                 </div>
                 
                 <div class="p-3 bg-light rounded mb-4 border">
