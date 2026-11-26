@@ -1,0 +1,48 @@
+# Deploys the A4S site to InfinityFree (a4s.site.je) on every push to master.
+# Save this file in the repo as: .github/workflows/deploy.yml
+#
+# Required repository secrets (GitHub > Settings > Secrets and variables > Actions):
+#   FTP_SERVER    e.g. ftpupload.net   (InfinityFree > FTP Details > FTP Hostname)
+#   FTP_USERNAME  if0_43537212
+#   FTP_PASSWORD  your InfinityFree account (FTP) password
+
+name: Deploy to InfinityFree
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch: # lets you run it manually from the Actions tab
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Upload changed files via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftp
+          port: 21
+          server-dir: /htdocs/
+          # Never overwrite the live db.php (it holds the hosting DB password)
+          # and never publish the SQL dump or local-only files.
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/node_modules/**
+            db.php
+            **/*.sql
+            **/.DS_Store
+            **/*.md
+            tools/**
+            config.example.php
